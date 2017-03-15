@@ -1,0 +1,22 @@
+[package]
+name = "fuzz_termion"
+version = "0.1.0"
+authors = ["quininer kel <quininer@live.com>"]
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+termion = "*"
+
+[dependencies.libfuzzer-sys]
+git = "https://github.com/rust-fuzz/libfuzzer-sys.git"
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "fuzzer_termion"
+path = "fuzzers/fuzzer_termion.rs"
